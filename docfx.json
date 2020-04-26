@@ -24,6 +24,13 @@
 		"content": [
 			{
 				"files": [
+					"**/*.yml"
+				],
+				"cwd": "obj/api/ChemistryNet",
+				"dest": "doc/api"
+			},
+			{
+				"files": [
 					"*.md",
 					"dev/**.md",
 					"toc.yml"
