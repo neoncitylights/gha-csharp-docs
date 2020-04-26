@@ -1,0 +1,23 @@
+{
+	"metadata": [
+		{
+			"src": [
+				{
+					"files": [
+						"**/*.csproj"
+					],
+					"exclude": [
+						"**/bin/**",
+						"**/obj/**"
+					],
+					"src": "../src"
+				}
+			],
+			"dest": "obj/docfx/api/Camphora",
+			"shouldSkipMarkup": true,
+			"properties": {
+				"TargetFramework": "netstandard1.3"
+			}
+		}
+	]
+}
