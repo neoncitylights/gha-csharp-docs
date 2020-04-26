@@ -30,12 +30,18 @@
 				"dest": "doc/api/ChemistryNet"
 			},
 			{
+				"files": [ "**.md" ],
+				"cwd": "conceptual/ChemistryNet",
+				"dest": "doc"
+			},
+			{
 				"files": [
 					"*.md",
 					"dev/**.md",
 					"toc.yml"
 				]
 			}
-		]
+		],
+		"dest": "live"
 	}
 }
