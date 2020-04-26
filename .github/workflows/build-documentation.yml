@@ -31,3 +31,13 @@ jobs:
 
     - name: Build docs
       run:  mono .docfx/docfx.exe
+
+    - name: Checkout live docs repo
+      uses: actions/checkout@v1
+      with:
+        repository: CamphoraNet/camphoranet.github.io
+        ref: master
+        fetch-depth: 1
+        path: docs/live
+    - name: Clear live docs repo
+      run: rm -rf live/*
