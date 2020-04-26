@@ -19,14 +19,14 @@ jobs:
 
     ## Checkout self repo
     - name: Checkout repo
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
       with:
         path: docs
         fetch-depth: 1
 
     ## Checkout repository to build documentation to
     - name: Checkout live documentation repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
       with:
         repository: CamphoraNet/camphoranet.github.io
         ref: master
@@ -38,7 +38,7 @@ jobs:
 
     ## Checkout repositories to build documentation **for**
     - name: Checkout ChemistryNet
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
       with:
         repository: CamphoraNet/ChemistryNet
         ref: master
