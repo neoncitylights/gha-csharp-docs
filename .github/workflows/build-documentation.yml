@@ -1,6 +1,7 @@
 name: Build Documentation
 
 on:
+  repository_dispatch:
   push:
     branches:
       - master
@@ -11,33 +12,63 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
+
+    ## Checkout self repo
     - name: Checkout repo
       uses: actions/checkout@v1
       with:
         path: docs
         fetch-depth: 1
 
-    - name: Get mono
-      run: |
-        apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-        echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-        sudo apt-get update
-        sudo apt-get install mono-complete --yes
-
-    - name: Get docfx
-      run: |
-        curl -L https://github.com/dotnet/docfx/releases/latest/download/docfx.zip -o docfx.zip
-        unzip -d .docfx docfx.zip
-
-    - name: Build docs
-      run:  mono .docfx/docfx.exe
-
-    - name: Checkout live docs repo
+    ## Checkout repository to build documentation to
+    - name: Checkout live documentation repository
       uses: actions/checkout@v1
       with:
         repository: CamphoraNet/camphoranet.github.io
         ref: master
         fetch-depth: 1
         path: docs/live
-    - name: Clear live docs repo
+
+    - name: Clear live documentation repository
       run: rm -rf live/*
+
+    ## Checkout repositories to build documentation **for**
+    - name: Checkout ChemistryNet
+      uses: actions/checkout@v1
+      with:
+        repository: CamphoraNet/ChemistryNet
+        ref: master
+        fetch-depth: 1
+        path: docs/ChemistryNet
+
+    ## Download software setup
+    - name: Get Mono
+      run: |
+        apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+        echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+        sudo apt-get update
+        sudo apt-get install mono-complete --yes
+
+    - name: Get DocFX
+      run: |
+        curl -L https://github.com/dotnet/docfx/releases/latest/download/docfx.zip -o docfx.zip
+        unzip -d .docfx docfx.zip
+
+    ## Build documentation
+    - name: Build docs
+      run:  mono .docfx/docfx.exe
+
+    - name: Commit and push
+      run: |
+        export GIT_COMMITTER_NAME=$(git show -s --format='%cn')
+        export GIT_COMMITTER_EMAIL=$(git show -s --format='%ce')
+        export GIT_AUTHOR_NAME=$(git show -s --format='%an')
+        export GIT_AUTHOR_EMAIL=$(git show -s --format='%ae')
+        export COMMIT_HASH=$(git show -s --format='%H')
+        export SUBJECT=$(git show -s --format='%s')
+        cd live
+        git add .
+        git commit -m "$SUBJECT" -m "Original commit: $COMMIT_HASH"
+        header=$(echo -n "ad-m:${{ secrets.DOC_MGMT_TOKEN }}" | base64)
+        git -c http.extraheader="AUTHORIZATION: basic $header" push origin HEAD:master
+    
