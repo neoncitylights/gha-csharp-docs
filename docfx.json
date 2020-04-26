@@ -4,16 +4,16 @@
 			"src": [
 				{
 					"files": [
-						"**/src/**/*.csproj"
+						"**/*.sln", "src/ChemistryNet/*.csproj"
 					],
 					"exclude": [
 						"**/bin/**",
 						"**/obj/**"
 					],
-					"src": "../src"
+					"src": "src"
 				}
 			],
-			"dest": "obj/docfx/api/Camphora",
+			"dest": "obj/api/ChemistryNet",
 			"shouldSkipMarkup": true,
 			"properties": {
 				"TargetFramework": "netstandard2.1"
