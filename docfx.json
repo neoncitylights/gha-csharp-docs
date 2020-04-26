@@ -4,7 +4,7 @@
 			"src": [
 				{
 					"files": [
-						"**/*.csproj"
+						"src/**/*.csproj"
 					],
 					"exclude": [
 						"**/bin/**",
@@ -16,7 +16,7 @@
 			"dest": "obj/docfx/api/Camphora",
 			"shouldSkipMarkup": true,
 			"properties": {
-				"TargetFramework": "netstandard1.3"
+				"TargetFramework": "netstandard2.1"
 			}
 		}
 	]
