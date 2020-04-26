@@ -19,5 +19,16 @@
 				"TargetFramework": "netcoreapp3.1"
 			}
 		}
-	]
+	],
+	"build": {
+		"content": [
+			{
+				"files": [
+					"*.md",
+					"dev/**.md",
+					"toc.yml"
+				]
+			}
+		]
+	}
 }
