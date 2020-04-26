@@ -10,7 +10,7 @@
 						"**/bin/**",
 						"**/obj/**"
 					],
-					"src": "**/"
+					"src": "ChemistryNet"
 				}
 			],
 			"dest": "obj/api/ChemistryNet",
