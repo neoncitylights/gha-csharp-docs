@@ -27,7 +27,7 @@
 					"**/*.yml"
 				],
 				"cwd": "obj/api/ChemistryNet",
-				"dest": "doc/api"
+				"dest": "doc/api/ChemistryNet"
 			},
 			{
 				"files": [
