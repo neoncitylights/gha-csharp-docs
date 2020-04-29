@@ -1,5 +1,4 @@
 - name: Home
   href: index.md
 - name: ChemistryNet
-  href: conceptual/ChemistryNet
-  homepage: index.md
+  href: libs/ChemistryNet/docs/

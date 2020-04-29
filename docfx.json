@@ -26,14 +26,14 @@
 					"**/*.yml"
 				],
 				"cwd": "obj/api/ChemistryNet",
-				"dest": "doc/api/ChemistryNet"
+				"dest": "libs/ChemistryNet/api"
 			},
 			{
 				"files": [
 					"**.md"
 				],
-				"cwd": "conceptual/ChemistryNet",
-				"dest": "doc"
+				"cwd": "docs/ChemistryNet",
+				"dest": "libs/ChemistryNet/docs"
 			},
 			{
 				"files": [
