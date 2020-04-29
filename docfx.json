@@ -32,7 +32,7 @@
 				"files": [
 					"**.md"
 				],
-				"cwd": "docs/ChemistryNet",
+				"cwd": "conceptual/ChemistryNet",
 				"dest": "libs/ChemistryNet/docs"
 			},
 			{
