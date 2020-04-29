@@ -1,4 +1,6 @@
 - name: Home
   href: index.md
+
 - name: ChemistryNet
+  topicHref: libs/ChemistryNet/docs/toc.md
   href: libs/ChemistryNet/docs/
