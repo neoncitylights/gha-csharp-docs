@@ -17,6 +17,25 @@
 			"properties": {
 				"TargetFramework": "netcoreapp3.1"
 			}
+		},
+
+		{
+			"src": [
+				{
+					"files": [
+						"src/BiologyNet/BiologyNet.csproj"
+					],
+					"exclude": [
+						"**/bin/**",
+						"**/obj/**"
+					],
+					"src": "BiologyNet/"
+				}
+			],
+			"dest": "obj/api/BiologyNet",
+			"properties": {
+				"TargetFramework": "netcoreapp3.1"
+			}
 		}
 	],
 	"build": {
@@ -35,6 +54,22 @@
 				"cwd": "conceptual/ChemistryNet",
 				"dest": "libs/ChemistryNet/docs"
 			},
+
+			{
+				"files": [
+					"**/*.yml"
+				],
+				"cwd": "obj/api/BiologyNet",
+				"dest": "libs/BiologyNet/api"
+			},
+			{
+				"files": [
+					"**.md"
+				],
+				"cwd": "conceptual/BiologyNet",
+				"dest": "libs/BiologyNet/docs"
+			},
+
 			{
 				"files": [
 					"*.md",

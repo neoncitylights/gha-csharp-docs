@@ -45,6 +45,14 @@ jobs:
         fetch-depth: 1
         path: docs/ChemistryNet
 
+    - name: Checkout BiologyNet
+      uses: actions/checkout@v1
+      with:
+        repository: CamphoraNet/BiologyNet
+        ref: master
+        fetch-depth: 1
+        path: docs/BiologyNet
+
     ## Download software setup
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
