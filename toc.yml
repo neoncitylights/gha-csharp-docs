@@ -1,6 +1,8 @@
 - name: Home
   href: index.md
+
 - name: ChemistryNet
   href: conceptual/ChemistryNet/
-- name: BiologyNet/
+
+- name: BiologyNet
   href: conceptual/BiologyNet/
