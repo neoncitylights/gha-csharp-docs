@@ -4,7 +4,7 @@
 			"src": [
 				{
 					"files": [
-						"src/ChemistryNet/ChemistryNet.csproj"
+						"src/ChemistryNet.csproj"
 					],
 					"exclude": [
 						"**/bin/**",
