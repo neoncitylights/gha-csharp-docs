@@ -1,8 +1,10 @@
 # Documentation CI pipeline for C# projects
 
-> Credit goes to Shay Rojansky for writing a tutorial on connecting DocFX with the GitHub Actions platform at http://www.roji.org/docfx-with-github-actions. Thank you!
+> **Note**:
+>  - Credit goes to Shay Rojansky for writing a tutorial on connecting DocFX with the GitHub Actions platform at http://www.roji.org/docfx-with-github-actions. Thank you!
+>  - This version has some slight changes of my own that I feel makes it reusable and easier to maintain. While I don't write in C# as nearly as often as I used to, I'd like to share my version with others in case others would also like to use it!
 
-This repository creates an automated documentation pipeline by building a single DocFX website from multiple C# repositories. While I don't write in C# as nearly as often as I used to, I'd like to share this with others in case others would also like to use it!
+This repository creates an automated documentation pipeline by building a single DocFX website from multiple C# repositories.
 
 ## Process
 1. Each library sends a repository dispatch event through a GitHub Actions workflow after every time a commit is pushed to master.
