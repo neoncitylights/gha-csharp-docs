@@ -2,30 +2,33 @@ name: Build Documentation
 
 on:
   repository_dispatch:
+# uncomment this when you're ready to start!
+#   push:
+#    branches:
+#     - master
 
 env:
   DOTNET_VERSION: 3.1.100
   DOCFX_VERSION: 2.51
+  REPO_HOST: repo-owner/repo-name
 
 jobs:
   build:
-
     runs-on: ubuntu-18.04
-
     steps:
 
     ## Checkout self repo
     - name: Checkout repo
-      uses: actions/checkout@v1
+      uses: actions/checkout@v3
       with:
         path: docs
         fetch-depth: 1
 
     ## Checkout repository to build documentation to
     - name: Checkout live documentation repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v3
       with:
-        repository: CamphoraNet/camphoranet.github.io
+        repository: ${{ env.REPO_HOST }}
         ref: master
         fetch-depth: 1
         path: docs/live
@@ -34,29 +37,31 @@ jobs:
       run: rm -rf live/*
 
     ## Checkout repositories to build documentation **for**
-    - name: Checkout ChemistryNet
-      uses: actions/checkout@v1
+    - uses: actions/checkout@v3
+      env:
+        REPO: something1 # CHANGE THIS TO A REPO NAME
       with:
-        repository: CamphoraNet/ChemistryNet
+        repository: ${{ github.repository_owner }}/${{ env.REPO }}
         ref: master
         fetch-depth: 1
-        path: docs/ChemistryNet
+        path: docs/${{ env.REPO }}
 
-    - name: Checkout BiologyNet
-      uses: actions/checkout@v1
+    - uses: actions/checkout@v3
+      env:
+        REPO: something2 # CHANGE THIS TO A REPO NAME
       with:
-        repository: CamphoraNet/BiologyNet
+        repository: ${{ github.repository_owner }}/${{ env.REPO }}
         ref: master
         fetch-depth: 1
-        path: docs/BiologyNet
+        path: docs/${{ env.REPO }}
 
     ## Download software setup
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 3.1.100
+        dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: Get Mono
+    - name: Get Mono C# compiler
       run: |
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
         echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
